@@ -33,9 +33,11 @@ int main(int argc, char const *argv[]) {
   for (size_t i = 0; i < output_samples_count; i++) {
     buffer[i] = (i % wave_period < wave_period / 2) ? 0.0 : 0.8;
   }
-
   sf_write_float(output_file, buffer, output_samples_count);
+
+  // Exit routine - free allocated memory and close open files
   sf_close(output_file);
+  free(buffer);
 
   return EXIT_SUCCESS;
 }
