@@ -8,7 +8,8 @@
 
 int main(int argc, char const *argv[]) {
   double dur = 1.0; // duration of sound in seconds
-  size_t output_samples_count = dur * SRATE;  // number of output samples
+  double freq = 440.0;
+  size_t output_samples_count = dur * SRATE; // number of output samples
 
   // Buffer to store samples to be written to output file
   float *buffer = malloc(sizeof(float) * output_samples_count * NCHANNELS);
@@ -28,7 +29,7 @@ int main(int argc, char const *argv[]) {
   SNDFILE *output_file = sf_open("square.wav", SFM_WRITE, &sfinfo);
 
   // Generate a square wave
-  size_t wave_period = 25; // wave period in samples
+  size_t wave_period = SRATE / freq; // wave period in samples
   for (size_t i = 0; i < output_samples_count; i++) {
     float sample;
     if (i % wave_period < wave_period / 2)
