@@ -31,13 +31,7 @@ int main(int argc, char const *argv[]) {
   // Generate a square wave
   size_t wave_period = SRATE / freq; // wave period in samples
   for (size_t i = 0; i < output_samples_count; i++) {
-    float sample;
-    if (i % wave_period < wave_period / 2)
-      sample = 0.0;
-    else
-      sample = 0.8;
-
-    buffer[i] = sample;
+    buffer[i] = (i % wave_period < wave_period / 2) ? 0.0 : 0.8;
   }
 
   sf_write_float(output_file, buffer, output_samples_count);
