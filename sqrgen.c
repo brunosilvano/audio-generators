@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <sndfile.h>
 
@@ -7,8 +8,23 @@
 #define NCHANNELS (1)
 
 int main(int argc, char const *argv[]) {
-  double dur = 1.0; // duration of sound in seconds
-  double freq = 440.0;
+
+  double dur = 1.0;    // duration of sound (seconds)
+  double freq = 440.0; // frequency of wave (Herz)
+
+  // Parse optional args
+  int opt;
+  while ((opt = getopt(argc, argv, "d:f:")) != -1) {
+    switch (opt) {
+    case 'd':
+      dur = atof(optarg);
+      break;
+    case 'f':
+      freq = atof(optarg);
+      break;
+    }
+  }
+
   size_t output_samples_count = dur * SRATE; // number of output samples
 
   // Buffer to store samples to be written to output file
