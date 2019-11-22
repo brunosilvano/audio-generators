@@ -36,7 +36,6 @@ int main(int argc, char const *argv[]) {
 
   // Output file settings
   SF_INFO sfinfo = {
-      .frames = output_samples_count * NCHANNELS,
       .samplerate = SRATE,
       .channels = NCHANNELS,
       .format = (SF_FORMAT_WAV | SF_FORMAT_FLOAT),
