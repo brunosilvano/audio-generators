@@ -16,5 +16,10 @@ INCLUDE=-I/usr/local/Cellar/libsndfile/1.0.28/include
 LIBS+=-L/usr/local/Cellar/libsndfile/1.0.28/lib
 endif
 
-all:
+all: sine square
+
+sine:
+	$(CC) -o sinegen sinegen.c $(FLAGS) $(INCLUDE) $(LIBS)
+
+square:
 	$(CC) -o sqrgen sqrgen.c $(FLAGS) $(INCLUDE) $(LIBS)
