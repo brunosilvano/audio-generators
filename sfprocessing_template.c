@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]) {
   }
 
   // Allocate a buffer for temporary storage of audio data
-  buffer = malloc(sizeof(double) * BUFFER_SIZE);
+  buffer = malloc(sizeof *buffer * BUFFER_SIZE);
   if (buffer == NULL) {
     printf("Unable to malloc for buffer\n");
     goto cleanup;
