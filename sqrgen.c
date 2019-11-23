@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
   size_t output_samples_count = dur * SRATE; // number of output samples
 
   // Buffer to store samples to be written to output file
-  float *buffer = malloc(sizeof(float) * output_samples_count * NCHANNELS);
+  float *buffer = malloc(sizeof *buffer * output_samples_count * NCHANNELS);
   if (buffer == NULL) {
     printf("Malloc for buffer failed.\n");
     return EXIT_FAILURE;
@@ -42,6 +42,7 @@ int main(int argc, char const *argv[]) {
   };
 
   SNDFILE *output_file = sf_open("square.wav", SFM_WRITE, &sfinfo);
+  // TODO: handle error when unable to open file
 
   // Generate a square wave
   size_t wave_period = SRATE / freq; // wave period in samples
@@ -49,6 +50,7 @@ int main(int argc, char const *argv[]) {
     buffer[i] = (i % wave_period < wave_period / 2) ? -1.0 : 1.0;
   }
   sf_write_float(output_file, buffer, output_samples_count);
+  // TODO: handle sample count when 1 < NCHANNELS
 
   // Exit routine - free allocated memory and close open files
   sf_close(output_file);

@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
   size_t output_samples_count = dur * SRATE; // number of output samples
 
   // Buffer to store samples to be written to output file
-  float *buffer = malloc(sizeof(float) * output_samples_count * NCHANNELS);
+  float *buffer = malloc(sizeof *buffer * output_samples_count * NCHANNELS);
   if (buffer == NULL) {
     printf("Malloc for buffer failed.\n");
     return EXIT_FAILURE;
