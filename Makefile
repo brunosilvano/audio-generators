@@ -23,3 +23,6 @@ sine:
 
 square:
 	$(CC) -o sqrgen sqrgen.c $(FLAGS) $(INCLUDE) $(LIBS)
+
+table:
+	$(CC) -o tablegen tablegen.c $(FLAGS) $(INCLUDE) $(LIBS)
